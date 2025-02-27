@@ -9,7 +9,12 @@ module.exports = {
     './app.vue',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        '2xs': ['0.625rem', { lineHeight: '0.75rem' }], // 10px
+        '3xs': ['0.5rem', { lineHeight: '0.625rem' }],  // 8px
+      },
+    },
   },
   plugins: [],
 }
