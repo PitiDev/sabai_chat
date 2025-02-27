@@ -1,9 +1,19 @@
 export default defineNuxtConfig({
+  app: {
+    head: {
+      viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+      meta: [
+        // ... other meta tags
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }
+      ]
+    }
+  },
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss'
   ],
-  
+
   css: ['@/assets/css/globals.css'],
 
   runtimeConfig: {
