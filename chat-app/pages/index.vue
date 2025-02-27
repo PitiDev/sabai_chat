@@ -66,12 +66,12 @@
         >
           ເຂົ້າສູ່ລະບົບ
         </NuxtLink>
-        <NuxtLink 
+        <!-- <NuxtLink 
           to="/login" 
           class="px-8 py-3 border-2 border-white/70 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transform hover:scale-105 transition duration-300"
         >
           ລົງທະບຽນ
-        </NuxtLink>
+        </NuxtLink> -->
       </div>
       
       <!-- App Preview -->

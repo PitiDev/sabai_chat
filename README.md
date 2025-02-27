@@ -21,6 +21,17 @@ Sabai Chat is a modern real-time messaging application built with Nuxt3, WebSock
 - **File Storage**: Integrated file upload system with preview capabilities
 - **UI/UX**: Modern glassmorphism design with responsive components
 
+## 🖼️ Screenshots
+
+### Landing Page
+![Landing Page](screenshots/login.png)
+
+### Dashboard
+![Dashboard Overview](screenshots/chat_page.png)
+
+### Dark Mode
+![Account Management](screenshots/chat_area.png)
+
 ## Setup and Installation
 
 ### Prerequisites

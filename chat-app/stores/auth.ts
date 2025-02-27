@@ -79,12 +79,6 @@ export const useAuthStore = defineStore('auth', {
       this.token = null;
       this.user = null;
 
-      // Remove cookies
-      const tokenCookie = useCookie('token');
-      const userCookie = useCookie('user');
-      tokenCookie.value = null;
-      userCookie.value = null;
-
       // Remove localStorage items
       if (process.client) {
         localStorage.removeItem('token');
@@ -93,16 +87,21 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async checkAuth() {
-      const tokenCookie = useCookie('token');
-      const userCookie = useCookie('user');
+      let token = null;
+      let userJson = null;
 
-      let token = tokenCookie.value;
-      let userJson = userCookie.value;
+      // Only check localStorage when running in the browser
+      if (process.client) {
+        token = localStorage.getItem('token');
+        userJson = localStorage.getItem('user');
+      }
 
-      // Try localStorage as fallback
-      if (process.client && (!token || !userJson)) {
-        token = token || localStorage.getItem('token');
-        userJson = userJson || localStorage.getItem('user');
+      // Fallback to cookies if still no values
+      if (!token || !userJson) {
+        const tokenCookie = useCookie('token');
+        const userCookie = useCookie('user');
+        token = token || tokenCookie.value;
+        userJson = userJson || userCookie.value;
       }
 
       if (token) {
@@ -110,12 +109,16 @@ export const useAuthStore = defineStore('auth', {
 
         if (userJson) {
           try {
-            this.user = JSON.parse(userJson as string);
+            this.user = JSON.parse(typeof userJson === 'string' ? userJson : '{}');
           } catch (e) {
             console.error('Failed to parse user data', e);
             this.logout();
           }
         }
+      } else {
+        // No authentication found
+        this.token = null;
+        this.user = null;
       }
     },
 
